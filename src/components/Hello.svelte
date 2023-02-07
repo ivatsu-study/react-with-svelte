@@ -1,1 +1,1 @@
-<div>Svelte</div>
+<span class="font-bold">Svelte</span>

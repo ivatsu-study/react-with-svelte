@@ -17,13 +17,23 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h1>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <h1 className="text-3xl">
         React +{" "}
         <span style={{ display: "inline-block" }} ref={svelteRef}></span>
       </h1>
       <div>
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button
+          className="btn btn-success"
+          onClick={() => setCount((count) => count + 1)}
+        >
           count is {count}
         </button>
       </div>
