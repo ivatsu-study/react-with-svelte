@@ -1,21 +1,12 @@
-import { useRef } from "react";
-import { useLayoutEffect } from "react";
 import { useState } from "react";
 import "./App.css";
-import Hello from "./components/Hello.svelte";
+import Hello from "./components/svelte/Hello.svelte";
+import SvelteWrapper from "./components/SvelteWrapper";
+
+const SvelteHello = SvelteWrapper(Hello);
+
 function App() {
   const [count, setCount] = useState(0);
-  const svelteRef = useRef();
-
-  useLayoutEffect(() => {
-    while (svelteRef.current?.firstChild) {
-      svelteRef.current?.firstChild?.remove();
-    }
-    new Hello({
-      target: svelteRef.current,
-      props: { text: "Svelte", onClick: () => alert("onClick from Svelte") },
-    });
-  }, []);
 
   return (
     <div
@@ -28,7 +19,11 @@ function App() {
     >
       <h1 className="text-3xl">
         React +{" "}
-        <span style={{ display: "inline-block" }} ref={svelteRef}></span>
+        <SvelteHello
+          style={{ display: "inline" }}
+          text="Svelte"
+          onClick={() => alert("onClick from Svelte")}
+        />
       </h1>
       <div>
         <button
