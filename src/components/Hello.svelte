@@ -1,1 +1,6 @@
-<span class="font-bold">Svelte</span>
+<script>
+  export let text = "";
+  export let onClick = () => {};
+</script>
+
+<span class="font-bold" on:click={onClick}>{text}</span>

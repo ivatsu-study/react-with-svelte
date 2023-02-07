@@ -13,6 +13,7 @@ function App() {
     }
     new Hello({
       target: svelteRef.current,
+      props: { text: "Svelte", onClick: () => alert("onClick from Svelte") },
     });
   }, []);
 
