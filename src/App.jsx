@@ -1,12 +1,27 @@
+import { useRef } from "react";
+import { useLayoutEffect } from "react";
 import { useState } from "react";
 import "./App.css";
-
+import Hello from "./components/Hello.svelte";
 function App() {
   const [count, setCount] = useState(0);
+  const svelteRef = useRef();
+
+  useLayoutEffect(() => {
+    while (svelteRef.current?.firstChild) {
+      svelteRef.current?.firstChild?.remove();
+    }
+    new Hello({
+      target: svelteRef.current,
+    });
+  }, []);
 
   return (
     <div>
-      <h1>React + Svelte</h1>
+      <h1>
+        React +{" "}
+        <span style={{ display: "inline-block" }} ref={svelteRef}></span>
+      </h1>
       <div>
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
